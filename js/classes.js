@@ -61,7 +61,8 @@ class Fighter extends Sprite {
     framesMax = 1,
     offset = {x: 0, y:0},
     sprites,
-    hitBox = { offset: {}, width: undefined, height: undefined }
+    hitBox = { offset: {}, width: undefined, height: undefined },
+    damage = 20
   }) {
     super({
       position,
@@ -92,6 +93,8 @@ class Fighter extends Sprite {
     this.framesHold = 5;
     this.sprites = sprites;
     this.dead = false;
+    this.canJump = true;
+    this.damage = damage;
 
     for (const sprite in this.sprites) {
       sprites[sprite].image = new Image();
@@ -117,6 +120,7 @@ class Fighter extends Sprite {
     if (this.position.y + this.height + this.velocity.y >= canvas.height - 97) {
       this.velocity.y = 0;
       this.position.y = 330;
+      this.canJump = true;
     } else { this.velocity.y += gravity; }
   }
 
@@ -125,9 +129,9 @@ class Fighter extends Sprite {
     this.isAttacking = true;
   }
 
-  takeHit() {
+  takeHit(damage) {
 
-    this.health -= 20;
+    this.health -= damage;
 
     if (this.health <= 0) {
       this.switchSprite("death");

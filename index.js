@@ -82,7 +82,8 @@ const player = new Fighter({
     },
     width: 160,
     height: 50
-  }
+  },
+  damage: 20
 });
 
 const enemy = new Fighter({
@@ -124,11 +125,11 @@ const enemy = new Fighter({
       framesMax: 2
     },
     attack1: {
-      imageSrc: "./img/kenji/Attack1.png",
+      imageSrc: "./img/kenji/Attack2.png",
       framesMax: 4
     },
     takeHit: {
-      imageSrc: "./img/kenji/Take hit.png",
+      imageSrc: "./img/kenji/Take Hit - white.png",
       framesMax: 3
     },
     death: {
@@ -143,7 +144,8 @@ const enemy = new Fighter({
     },
     width: 170,
     height: 50
-  }
+  },
+  damage: 10
 });
 
 const keys = {
@@ -158,7 +160,7 @@ const keys = {
 decreaseTimer();
 
 function animate() {
-  window.requestAnimationFrame(animate)
+  window.requestAnimationFrame(animate);
   c.fillStyle = "black";
   c.fillRect(0, 0, canvas.width, canvas.height);
   background.update();
@@ -181,7 +183,7 @@ function animate() {
     player.switchSprite("idle");
   }
 
-    //jumping
+    //jumping animations
   if (player.velocity.y < 0) {
     player.switchSprite("jump");
   } else if (player.velocity.y > 0) {
@@ -201,7 +203,7 @@ function animate() {
     enemy.switchSprite("idle");
   }
 
-    //jumping
+    //jumping animations
   if (enemy.velocity.y < 0) {
     enemy.switchSprite("jump");
   } else if (enemy.velocity.y > 0) {
@@ -217,7 +219,7 @@ function animate() {
     player.isAttacking &&
     player.framesCurrent === 4
   ) {
-    enemy.takeHit();
+    enemy.takeHit(player.damage);
     player.isAttacking = false;
     gsap.to("#enemyHealth", {
       width: enemy.health + "%"
@@ -238,7 +240,7 @@ function animate() {
     enemy.isAttacking &&
     enemy.framesCurrent === 2
   ) {
-    player.takeHit();
+    player.takeHit(enemy.damage);
     enemy.isAttacking = false;
     gsap.to("#playerHealth", {
       width: player.health + "%"
@@ -271,7 +273,10 @@ window.addEventListener("keydown", (event) => {
         player.lastKey = "a";
         break;
       case 'w':
-        player.velocity.y = -20;
+        if (player.canJump) {
+          player.velocity.y = -20;
+          player.canJump = false;
+        }
         break;
       case 's':
         player.attack();
@@ -291,7 +296,10 @@ window.addEventListener("keydown", (event) => {
         enemy.lastKey = "j";
         break;
       case 'i':
-        enemy.velocity.y = -20;
+        if (enemy.canJump) {
+          enemy.velocity.y = -20;
+          enemy.canJump = false;
+        }
         break;
       case 'k':
         enemy.attack();
