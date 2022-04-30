@@ -66,6 +66,10 @@ const player = new Fighter({
       imageSrc: "./img/samuraiMack/Attack1.png",
       framesMax: 6
     },
+    attack2: {
+      imageSrc: "./img/samuraiMack/Attack2.png",
+      framesMax: 6
+    },
     takeHit: {
       imageSrc: "./img/samuraiMack/Take Hit - white silhouette.png",
       framesMax: 4
@@ -75,7 +79,7 @@ const player = new Fighter({
       framesMax: 6
     }
   },
-  hitBox: {
+  hitbox: {
     offset: {
       x: 100,
       y: 50
@@ -125,6 +129,10 @@ const enemy = new Fighter({
       framesMax: 2
     },
     attack1: {
+      imageSrc: "./img/kenji/Attack1.png",
+      framesMax: 4
+    },
+    attack2: {
       imageSrc: "./img/kenji/Attack2.png",
       framesMax: 4
     },
@@ -137,7 +145,7 @@ const enemy = new Fighter({
       framesMax: 7
     }
   },
-  hitBox: {
+  hitbox: {
     offset: {
       x: -170,
       y: 50
@@ -173,10 +181,10 @@ function animate() {
   //player movement
   player.velocity.x = 0;
 
-  if (keys.d.pressed && player.lastKey === "d") {
+  if (keys.d.pressed && player.lastKey === "d" && !player.isAttacking) {
     player.velocity.x = 5;
     player.switchSprite("run");
-  } else if (keys.a.pressed && player.lastKey === "a") {
+  } else if (keys.a.pressed && player.lastKey === "a" && !player.isAttacking) {
     player.velocity.x = -5;
     player.switchSprite("run");
   } else {
@@ -193,10 +201,10 @@ function animate() {
   //enemy movement
   enemy.velocity.x = 0;
 
-  if (keys.l.pressed && enemy.lastKey === "l") {
+  if (keys.l.pressed && enemy.lastKey === "l" && !enemy.isAttacking) {
     enemy.velocity.x = 5;
     enemy.switchSprite("run");
-  } else if (keys.j.pressed && enemy.lastKey === "j") {
+  } else if (keys.j.pressed && enemy.lastKey === "j" && !enemy.isAttacking) {
     enemy.velocity.x = -5;
     enemy.switchSprite("run");
   } else {

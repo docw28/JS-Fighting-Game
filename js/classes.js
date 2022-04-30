@@ -61,7 +61,7 @@ class Fighter extends Sprite {
     framesMax = 1,
     offset = {x: 0, y:0},
     sprites,
-    hitBox = { offset: {}, width: undefined, height: undefined },
+    hitbox = { offset: {}, width: undefined, height: undefined },
     damage = 20
   }) {
     super({
@@ -76,14 +76,14 @@ class Fighter extends Sprite {
     this.width = 50;
     this.height = 150;
     this.lastKey;
-    this.hitBox = {
+    this.hitbox = {
       position: {
         x: this.position.x,
         y: this.position.y
       },
-      offset: hitBox.offset,
-      width: hitBox.width,
-      height: hitBox.height
+      offset: hitbox.offset,
+      width: hitbox.width,
+      height: hitbox.height
     };
     this.colour = colour;
     this.isAttacking;
@@ -106,12 +106,12 @@ class Fighter extends Sprite {
     this.draw();
     if (!this.dead) { this.animateFrames(); }
 
-    // hitbox
-    this.hitBox.position.x = this.position.x + this.hitBox.offset.x;
-    this.hitBox.position.y = this.position.y + this.hitBox.offset.y;
+    // attack1 hitbox
+    this.hitbox.position.x = this.position.x + this.hitbox.offset.x;
+    this.hitbox.position.y = this.position.y + this.hitbox.offset.y;
 
-    // draw hitbox
-    // c.fillRect(this.hitBox.position.x, this.hitBox.position.y, this.hitBox.width, this.hitBox.height);
+    // draw attack1 hitbox
+    // c.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.width, this.hitbox.height);
 
     this.position.x += this.velocity.x;
     this.position.y += this.velocity.y;
