@@ -79,7 +79,7 @@ const player = new Fighter({
       framesMax: 6
     }
   },
-  hitbox: {
+  hitbox1: {
     offset: {
       x: 100,
       y: 50
@@ -145,7 +145,7 @@ const enemy = new Fighter({
       framesMax: 7
     }
   },
-  hitbox: {
+  hitbox1: {
     offset: {
       x: -170,
       y: 50

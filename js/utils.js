@@ -1,9 +1,9 @@
 function rectangularCollision({ rectangle1, rectangle2}) {
   return (
-    rectangle1.hitbox.position.x + rectangle1.hitbox.width >= rectangle2.position.x
-    && rectangle1.hitbox.position.x <= rectangle2.position.x + rectangle2.width
-    && rectangle1.hitbox.position.y + rectangle1.hitbox.height >= rectangle2.position.y
-    && rectangle1.hitbox.position.y <= rectangle2.position.y + rectangle2.height
+    rectangle1.hitbox1.position.x + rectangle1.hitbox1.width >= rectangle2.position.x
+    && rectangle1.hitbox1.position.x <= rectangle2.position.x + rectangle2.width
+    && rectangle1.hitbox1.position.y + rectangle1.hitbox1.height >= rectangle2.position.y
+    && rectangle1.hitbox1.position.y <= rectangle2.position.y + rectangle2.height
   )
 }
 

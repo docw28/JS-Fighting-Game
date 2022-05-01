@@ -61,7 +61,7 @@ class Fighter extends Sprite {
     framesMax = 1,
     offset = {x: 0, y:0},
     sprites,
-    hitbox = { offset: {}, width: undefined, height: undefined },
+    hitbox1 = { offset: {}, width: undefined, height: undefined },
     damage = 20
   }) {
     super({
@@ -76,14 +76,14 @@ class Fighter extends Sprite {
     this.width = 50;
     this.height = 150;
     this.lastKey;
-    this.hitbox = {
+    this.hitbox1 = {
       position: {
         x: this.position.x,
         y: this.position.y
       },
-      offset: hitbox.offset,
-      width: hitbox.width,
-      height: hitbox.height
+      offset: hitbox1.offset,
+      width: hitbox1.width,
+      height: hitbox1.height
     };
     this.colour = colour;
     this.isAttacking;
@@ -107,12 +107,18 @@ class Fighter extends Sprite {
     if (!this.dead) { this.animateFrames(); }
 
     // attack1 hitbox
-    this.hitbox.position.x = this.position.x + this.hitbox.offset.x;
-    this.hitbox.position.y = this.position.y + this.hitbox.offset.y;
+    this.hitbox1.position.x = this.position.x + this.hitbox1.offset.x;
+    this.hitbox1.position.y = this.position.y + this.hitbox1.offset.y;
 
-    // draw attack1 hitbox
-    c.fillStyle = "rgba(255, 0, 0, 0.5)";
-    c.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.width, this.hitbox.height);
+    if (this.isAttacking && this.framesCurrent === (4 || 5)) {
+      c.fillStyle = "rgba(255, 0, 0, 0.5)";
+      c.fillRect(this.hitbox1.position.x, this.hitbox1.position.y, this.hitbox1.width, this.hitbox1.height);
+    }
+    // attack2 hitbox
+    // this.hitbox.position.x = this.position.x + this.hitbox.offset.x;
+    // this.hitbox.position.y = this.position.y + this.hitbox.offset.y;
+    // c.fillStyle = "rgba(255, 0, 0, 0.5)";
+    // c.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.width, this.hitbox.height);
 
     this.position.x += this.velocity.x;
     this.position.y += this.velocity.y;
