@@ -111,6 +111,7 @@ class Fighter extends Sprite {
     this.hitbox.position.y = this.position.y + this.hitbox.offset.y;
 
     // draw attack1 hitbox
+    c.fillStyle = "rgba(255, 0, 0, 0.5)";
     c.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.width, this.hitbox.height);
 
     this.position.x += this.velocity.x;
