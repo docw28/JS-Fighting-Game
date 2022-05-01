@@ -27,7 +27,7 @@ const shop = new Sprite({
 
 const player = new Fighter({
   position: {
-    x: 0,
+    x: 200,
     y: 0
   },
   velocity: {
@@ -92,7 +92,7 @@ const player = new Fighter({
 
 const enemy = new Fighter({
   position: {
-    x: 400,
+    x: 1024-250,
     y: 100
   },
   velocity: {
@@ -286,8 +286,11 @@ window.addEventListener("keydown", (event) => {
           player.canJump = false;
         }
         break;
-      case 's':
-        player.attack();
+      case 'q':
+        player.attack1();
+        break;
+      case 'e':
+        player.attack2();
         break;
     }
   }
@@ -309,8 +312,11 @@ window.addEventListener("keydown", (event) => {
           enemy.canJump = false;
         }
         break;
-      case 'k':
-        enemy.attack();
+      case 'u':
+        enemy.attack1();
+        break;
+      case 'o':
+        enemy.attack2();
         break;
     }
   }
